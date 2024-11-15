@@ -16,7 +16,7 @@ This script is designed to restore deleted entities in Port using data from audi
 
 ## Features
 
-- Fetches audit logs from the API for specific blueprints.
+- Fetches audit logs from the [PORT API](https://docs.getport.io/api-reference/get-audit-logs) for specific blueprints.
 - Restores deleted entities based on the fetched logs.
 - Logs the process for easy debugging.
 
@@ -26,10 +26,10 @@ This script is designed to restore deleted entities in Port using data from audi
 
 ### Python Packages
 
-- `httpx` for making asynchronous HTTP requests.
-- `loguru` for logging.
-- `asyncio` for asynchronous programming.
-- `python-decouple` for loading configuration variables.
+- `httpx` for making asynchronous HTTP requests
+- `loguru` for logging
+- `asyncio` for asynchronous programming
+- `python-decouple` for loading configuration variables
 
 ## Installation
 
@@ -61,10 +61,10 @@ The script uses environment variables for data like API URLs and tokens. You can
 
 ### Required Environment Variables
 
-- `PORT_API_URL`: Base URL of the API.
-- `PORT_CLIENT_ID`: Port client ID for authentication.
-- `PORT_CLIENT_SECRET`: Port client secret for authentication.
-- `PORT_API_TIMEOUT`: Timeout in seconds. Default is 300 equivalent to 5 minutes
+- `PORT_API_URL`: Base URL of Port API. Default is https://api.getport.io/v1
+- `PORT_CLIENT_ID`: Port client ID for authentication
+- `PORT_CLIENT_SECRET`: Port client secret for authentication
+- `PORT_API_TIMEOUT`: Timeout in seconds. Default is 300
 - `BLUEPRINT_IDENTIFIERS`: A comma separated list of blueprint identifiers to restore data for
 - `DAYS_TO_RECOVER`: Number of days to look back when fetching audit logs. Default is 1 day
 
@@ -102,19 +102,3 @@ The logs are printed to the console by default using `loguru`. To change the log
 2024-11-15 15:11:43.325 | INFO     | __main__:fetch_audit_logs:37 - Fetching audit logs for blueprint 'sonarQubeProject'...
 2024-11-15 15:12:43.929 | ERROR    | __main__:restore_deleted_entities:118 - An error occurred: Expecting value: line 1 column 1 (char 0)
 ```
-
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request for any changes or improvements.
-
-### Steps for Contribution
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Commit your changes (`git commit -m 'Add feature'`).
-4. Push to the branch (`git push origin feature-branch`).
-5. Open a Pull Request.
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
