@@ -12,12 +12,13 @@ PORT_CLIENT_SECRET = config("PORT_CLIENT_SECRET")
 PORT_API_URL = config("PORT_API_URL", default="https://api.getport.io/v1")
 
 # User Configurable Variables
-BLUEPRINTS = config("BLUEPRINT_IDENTIFIERS", default="sonarQubeProject").split(",")
+BLUEPRINTS = config("BLUEPRINT_IDENTIFIERS").split(",")
 DAYS = int(config("DAYS_TO_RECOVER", default=3))
+TIMEOUT = int(config("PORT_API_TIMEOUT", default=300))
+
 
 AUDIT_ACTION = "DELETE"
 AUDIT_STATUS = "SUCCESS"
-TIMEOUT=300 # 5 minutes
 
 # Authentication to retrieve access token
 async def get_access_token() -> str:
@@ -65,7 +66,7 @@ async def restore_entity(access_token, blueprint_identifier, entity_data) -> tup
         "properties": entity_data.get("properties", {}),
         "relations": entity_data.get("relations", {})
     })
-    
+
     async with httpx.AsyncClient() as client:
         response = await client.post(url, headers=headers, data=payload, timeout=TIMEOUT)
         status_code = response.status_code
@@ -118,7 +119,11 @@ async def restore_deleted_entities(blueprints, days):
     except Exception as e:
         logger.exception(f"An error occurred: {str(e)}")
 
-# Main function
+    logger.info("Process completed.")
+
 if __name__ == "__main__":
     logger.add("restore_deleted_data.log", rotation="1 MB", level="DEBUG")
-    asyncio.run(restore_deleted_entities(BLUEPRINTS, DAYS))
+    if BLUEPRINTS:
+        asyncio.run(restore_deleted_entities(BLUEPRINTS, DAYS))
+    else:
+        logger.error("No blueprint identifiers provided. Exiting.")
