@@ -89,9 +89,6 @@ The script has basic error handling with logging for the following common issues
 1. **ReadTimeout**: If the request to fetch audit logs times out, the error is logged. You may consider increasing the `PORT_API_TIMEOUT` timeout duration.
 3. **Authorization Error**: Ensure your access token is valid. If it expires, the script will need to be restarted.
 
-### Logs
-
-The logs are printed to the console by default using `loguru`. To change the logging level or output file, modify the `loguru` configuration in the script.
 
 ## Example Output
 
