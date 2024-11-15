@@ -1,6 +1,6 @@
 # Restore Deleted Entities in Port
 
-This script is designed to restore deleted entities in Port using data from audit logs. It fetches logs for specific blueprints (e.g., `sonarQubeProject`, `sonarQubeIssue`, `sonarQubeAnalysis`) within a specified timeframe and restores the entities that were deleted.
+This script is designed to restore deleted entities in Port using data from audit logs. It fetches logs for specific blueprints (e.g., `sonarQubeProject`, `pagerdutyService`, `newRelicAlert`) within a specified timeframe and restores the entities that were deleted.
 
 ## Table of Contents
 
