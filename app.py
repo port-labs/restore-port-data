@@ -6,16 +6,13 @@ from decouple import config
 from loguru import logger
 from typing import Any
 
-# Configuration
+# User Configurable Variables
 PORT_CLIENT_ID = config("PORT_CLIENT_ID")
 PORT_CLIENT_SECRET = config("PORT_CLIENT_SECRET")
 PORT_API_URL = config("PORT_API_URL", default="https://api.getport.io/v1")
-
-# User Configurable Variables
 BLUEPRINTS = config("BLUEPRINT_IDENTIFIERS").split(",")
 DAYS = int(config("DAYS_TO_RECOVER", default=3))
 TIMEOUT = int(config("PORT_API_TIMEOUT", default=300))
-
 
 AUDIT_ACTION = "DELETE"
 AUDIT_STATUS = "SUCCESS"
