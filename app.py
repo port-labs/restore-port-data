@@ -34,14 +34,14 @@ async def get_access_token() -> str:
             logger.error("Failed to retrieve access token")
         return access_token
 
-# Fetch audit logs for a specified blueprint and action (DELETE)
+# Fetch audit logs for a specified blueprint and action
 async def fetch_audit_logs(access_token, blueprint, from_date, to_date) -> list[dict[str, Any]]:
     logger.info(f"Fetching audit logs for blueprint '{blueprint}'...")
     headers = {"Authorization": f"Bearer {access_token}"}
     params = {
         "blueprint": blueprint,
-        # "from": from_date,
-        # "to": to_date,
+        # "from": from_date, // Uncomment to filter by date range
+        # "to": to_date, // Uncomment to filter by date range
         "action": AUDIT_ACTION,
         "status": AUDIT_STATUS
     }
@@ -88,7 +88,7 @@ async def restore_deleted_entities(blueprints, days):
             logger.critical("Unable to continue without access token. Exiting.")
             return
         
-        # Define the date range (default to last 3 days)
+        # Define the date range for fetching audit logs
         to_date = datetime.utcnow().isoformat() + "Z"
         from_date = (datetime.utcnow() - timedelta(days=days)).isoformat() + "Z"
         
