@@ -10,9 +10,7 @@ This script is designed to restore deleted entities in Port using data from audi
 - [Configuration](#configuration)
 - [Usage](#usage)
 - [Error Handling](#error-handling)
-- [Example](#example)
-- [Contributing](#contributing)
-- [License](#license)
+- [Example](#example-output)
 
 ## Features
 
